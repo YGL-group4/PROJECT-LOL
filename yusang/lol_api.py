@@ -30,16 +30,22 @@ def make_url_league(league, api_key, tier=0):
     솔랭 리그별 플레이어 리스트 불러오는 url 만들기
     """
 
-    league_list = ['grandmaster', 'master', 'diamond', 'platinum']
+    league_list = ['challenger', 'grandmaster', 'master', 'diamond', 'platinum']
     tier_list = {1: 'I', 2: 'II', 3: 'III', 4: 'IV'}
     query = {}
 
     if league in league_list:
-        if league == 'grandmaster':
+        if league == 'challenger':
+            print("챌린저 리그를 불러옵니다...")
+            url_league = '/challengerleagues/by-queue/RANKED_SOLO_5x5'
+        elif league == 'grandmaster':
+            print("그랜드마스터 리그를 불러옵니다...")
             url_league = '/grandmasterleagues/by-queue/RANKED_SOLO_5x5'
         elif league == 'master':
+            print("마스터 리그를 불러옵니다...")
             url_league = '/masterleagues/by-queue/RANKED_SOLO_5x5'
         else:
+            print("플레 or 다이아 리그를 불러옵니다...")
             url_league = f'/entries/RANKED_SOLO_5x5/{league.upper()}/{tier_list[tier]}'
             query['page'] = 1   # 일단 1페이지만 포함
     else:
@@ -105,23 +111,51 @@ def get_summoner_df(url):
 
     return df
 
-# ----------------------------
-
-if __name__ == '__main__':
+def get_grandmaster_df():
     api_key = get_api_key()
     url_league = make_url_league(league='grandmaster', api_key=api_key)
     df_league = get_league_df(url_league)
 
-    print(df_league.columns)
+    df = df_league[['summonerName', 'leaguePoints']]
+    df = df.sort_values('leaguePoints', ascending=False)
+    df = df.reset_index(drop=True)
+
+    return df
+
+def get_challenger_df():
+    api_key = get_api_key()
+    url_league = make_url_league(league='challenger', api_key=api_key)
+    df_league = get_league_df(url_league)
+
+    df = df_league[['summonerName', 'leaguePoints']]
+    df = df.sort_values('leaguePoints', ascending=False)
+    df = df.reset_index(drop=True)
+
+    return df
+
+
+# ----------------------------
+
+if __name__ == '__main__':
+
+    # df = get_grandmaster_df()
+    df = get_challenger_df()
+
+    # df.to_csv('challenger_list.csv')
+
+    df = get_grandmaster_df()
+    df.to_csv('grandmaster_list.csv')
+
+
     # print(df.loc[0])
-
-    df_summoners = pd.DataFrame()
-    for summoner_id in df_league['summonerId']:
-        url_summoner = make_url_summoner(id=summoner_id, api_key=api_key)
-        temp_df = get_summoner_df(url_summoner)
-
-        # df_summoners.loc[len(df_summoners)] = temp_df     # wrong code
-        df_summoners = pd.concat([df_summoners, temp_df])
-
-    print(df_summoners)
+    #
+    # df_summoners = pd.DataFrame()
+    # for summoner_id in df_league['summonerId']:
+    #     url_summoner = make_url_summoner(id=summoner_id, api_key=api_key)
+    #     temp_df = get_summoner_df(url_summoner)
+    #
+    #     # df_summoners.loc[len(df_summoners)] = temp_df     # wrong code
+    #     df_summoners = pd.concat([df_summoners, temp_df])
+    #
+    # print(df_summoners)
 
