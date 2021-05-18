@@ -5,6 +5,7 @@ Editor : Yusang Jeon
 라이엇 API를 활용한 천상계 데이터 수집
 같은 디렉토리에 lol_api_key.txt가 있어야함.
 
+
 """
 
 import pandas as pd
