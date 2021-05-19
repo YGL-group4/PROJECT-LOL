@@ -15,6 +15,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import urllib
 import time
+import os
 
 url_base = 'https://poro.gg/summoner/kr/'
 
@@ -24,11 +25,17 @@ def crawling(df):
     :param df: 소환사명 명단 ('summonerName')
     :return: 포지션별 지표 및 승률
     """
-    driver = webdriver.Chrome('chromedriver')
+    dir = os.path.dirname(__file__)
+    path_driver = os.path.join(dir, 'chromedriver.exe')
+
+    driver = webdriver.Chrome(path_driver)
     data = pd.DataFrame()
     for name in df['summonerName']:
         df_temp = get_user_log(name, driver=driver)
-        data = pd.concat([data, df_temp])
+        if type(df_temp) == type(-1):
+            continue
+        else:
+            data = pd.concat([data, df_temp])
 
     driver.close()
 
@@ -42,7 +49,7 @@ def get_user_log(name, driver=None):
     이후 최근 전적 데이터 크롤링
     :param name: 소환사명
     :param driver: 열려있는 webdriver
-    :return: 데이터프레임(포지션별 KDA, ..., 승률) 반환
+    :return: 데이터프레임(포지션별 KDA, ..., 승률) 반환, 소환사명 없으면 -1 반환
     """
 
     def find_position(game, name):
@@ -65,9 +72,20 @@ def get_user_log(name, driver=None):
     # html 파싱하기
     url = make_url(name)
     driver.get(url)
-    time.sleep(2)
+    print(f"소환사명 : {name}", end='')
+    time.sleep(3)
+
+    # 소환사명 없는 경우 예외처리
+    try:
+        driver.find_element_by_id('search-not-found')
+    except:
+        print()
+    else:
+        print(" (not found)")
+        return -1
+
     driver.find_elements_by_css_selector('div > button.match-history-filter__queue-type')[1].click()
-    time.sleep(2)
+    time.sleep(3)
 
     html = driver.page_source
     html_ps = BeautifulSoup(html, 'lxml')

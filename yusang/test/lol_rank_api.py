@@ -2,9 +2,7 @@
 """
 Editor : Yusang Jeon
 
-라이엇 API를 활용한 리그별 소환사명 수집
-유의사항
-- 같은 디렉토리에 lol_api_key.txt가 있어야함.
+라이엇 API를 활용한 천상계 데이터 수집
 
 """
 
@@ -18,7 +16,7 @@ def get_api_key():
     """
     api key : 2021-05-17
     """
-    f = open("mod/lol_api_key.txt", 'r')
+    f = open("../mod/lol_api_key.txt", 'r')
     # f = open("mini_project/lol_api_key.txt", 'r')
     api_key = f.readline()
     f.close()

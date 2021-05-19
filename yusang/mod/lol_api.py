@@ -11,6 +11,7 @@ Editor : Yusang Jeon
 import pandas as pd
 import requests
 import urllib
+import os
 
 url_base = 'https://kr.api.riotgames.com'
 
@@ -18,8 +19,11 @@ def get_api_key():
     """
     api key : 2021-05-17
     """
-    f = open("lol_api_key.txt", 'r')
-    # f = open("mini_project/lol_api_key.txt", 'r')
+    dir = os.path.dirname(__file__)
+    path_key = os.path.join(dir, 'lol_api_key.txt')
+
+    f = open(path_key, 'r')
+    # f = open("lol_api_key.txt", 'r')
     api_key = f.readline()
     f.close()
 
