@@ -15,7 +15,7 @@ import numpy as np
 np.random.seed(5)
 
 # 1. get dataset ( position = mid )
-df = pd.read_csv('challenger_log_rev.csv')
+df = pd.read_csv('../data/challenger_log_rev.csv')
 df = df[df['position'] == 'mid']
 df = df.drop('position', axis=1)
 

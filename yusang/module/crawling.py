@@ -93,7 +93,7 @@ def get_user_log(name, driver=None):
     url = make_url(name)
     driver.get(url)
     print(f"소환사 <{name}> 정보 로딩 중...", end='')
-    time.sleep(3)
+    time.sleep(4)
     # 소환사명 없는 경우 예외처리
     try:
         driver.find_element_by_id('search-not-found')
@@ -125,7 +125,8 @@ def get_user_log(name, driver=None):
             continue # 다시하기는 패스
 
         temp_df['position'] = find_position(game, name)
-        temp_df['play time'] = game.select('div > span.mt-md-1')[0].text
+        playtime_str = game.select('div > span.mt-md-1')[0].text
+        temp_df['play time'] = int(playtime_str[:2]) * 60 + int(playtime_str[3:])
 
         kda = game.select('div > div.kda > span')
         temp_df['kill'] = int(kda[0].text)
