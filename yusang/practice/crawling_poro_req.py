@@ -30,7 +30,7 @@ def make_url(name):
 
     return url
 
-# ----------test code
+# ----------practice code
 
 name = "팀개못하면누누함"
 name = urllib.parse.quote(name)

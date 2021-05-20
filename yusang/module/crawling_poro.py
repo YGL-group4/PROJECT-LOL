@@ -133,7 +133,7 @@ def make_url(name):
 
     return url
 
-# ----------test code
+# ----------practice code
 
 def test():
     df = pd.DataFrame(['팀개못하면누누함'])
