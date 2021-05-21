@@ -53,17 +53,18 @@ def longer_playtime(df, time_str: str):
     return df_result
 
 # Scaling
-def scale_data(x):
+def scale_data(x, scaler=None):
     """
     sklearn의 MinMaxScaler를 활용한다.
     input data를 scaling한다.
-    :param x_train: input data for train
-    :param y_train: output data for train
-    :return: scaled input, output data for train
+    :param x: input data
+    :param scaler: scaler
+    :return: scaled input data, scaler
     """
-    scaler = MinMaxScaler()
+    if scaler == None:
+        scaler = MinMaxScaler()
+        scaled_x = scaler.fit_transform(x)
+    else:
+        scaled_x = scaler.transform(x)
 
-    scaled_x = scaler.fit_transform(x)
-    # scaled_x = scaler.transform(x)
-
-    return scaled_x
+    return scaled_x, scaler

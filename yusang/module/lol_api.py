@@ -27,7 +27,7 @@ def get_api_key():
 
     return api_key
 
-def get_summoners(league, tier=0):
+def get_summoners_list(league, tier=0):
     """
     주어진 리그에 속한 소환사들의 명단을 만드는 함수
     :param league: 리그명(challenger, grandmaster, master, diamond, platinum)
@@ -87,7 +87,7 @@ def get_grandmaster_df():
     그랜드마스터 리그의 소환사명 명단을 찾아오는 함수
     :return: 그랜드마스터 소환사명이 나열된 Dataframe
     """
-    df_league = get_summoners(league='grandmaster')
+    df_league = get_summoners_list(league='grandmaster')
 
     # 랭크 점수 순서대로, 소환사명을 나열
     df = df_league[['summonerName', 'leaguePoints']]
@@ -101,12 +101,17 @@ def get_challenger_df():
     챌린저 리그의 소환사명 명단을 찾아오는 함수
     :return: 챌린저 소환사명이 나열된 Dataframe
     """
-    df_league = get_summoners(league='challenger')
+    df_league = get_summoners_list(league='challenger')
 
     # 랭크 점수 순서대로, 소환사명을 나열
     df = df_league[['summonerName', 'leaguePoints']]
     df = df.sort_values('leaguePoints', ascending=False)
     df = df.reset_index(drop=True)
+
+    return df
+
+def get_summoner_df(name):
+    df = pd.DataFrame([name], columns=['summonerName'])
 
     return df
 
@@ -127,24 +132,24 @@ def make_url_summoner(id, api_key):
 
     return url
 
-def get_summoner_df(url):
-
-    response = requests.get(url)
-    if response.status_code != 200:
-        raise ValueError("Response code is not 200")
-
-    data_dict = eval(response.text)
-    df = pd.DataFrame([data_dict])
-
-    # column 순서 변경
-    col1 = ["name"]
-    col2 = df.columns.to_list()
-    col2.remove("name")
-    df = df[col1 + col2]
-
-    print(df.columns)
-
-    return df
+# def get_summoner_df(url):
+#
+#     response = requests.get(url)
+#     if response.status_code != 200:
+#         raise ValueError("Response code is not 200")
+#
+#     data_dict = eval(response.text)
+#     df = pd.DataFrame([data_dict])
+#
+#     # column 순서 변경
+#     col1 = ["name"]
+#     col2 = df.columns.to_list()
+#     col2.remove("name")
+#     df = df[col1 + col2]
+#
+#     print(df.columns)
+#
+#     return df
 
 
 if __name__ == '__main__':
