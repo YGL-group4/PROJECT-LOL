@@ -31,12 +31,16 @@ def get_data(df):
     driver = webdriver.Chrome(path_driver)
     driver.implicitly_wait(3)
 
-    print(f"{len(df['summonerName'])}명의 소환사 정보를 불러옵니다...")
+    num_summoner = len(df['summonerName'])
+
+    print(f"{num_summoner}명의 소환사 정보를 불러옵니다...")
 
     data = pd.DataFrame()
     num_success = 0
     num_fail = 0
     for name in df['summonerName']:
+        print(f'({num_success+num_fail+1}/{num_summoner}) ', end='')
+
         df_temp = get_user_log(name, driver=driver)
         if type(df_temp) == type(-1):
             num_fail += 1
@@ -93,7 +97,7 @@ def get_user_log(name, driver=None):
     url = make_url(name)
     driver.get(url)
     print(f"소환사 <{name}> 정보 로딩 중...", end='')
-    time.sleep(3)
+    time.sleep(2.5)
     # 소환사명 없는 경우 예외처리
     try:
         driver.find_element_by_id('search-not-found')
@@ -105,7 +109,7 @@ def get_user_log(name, driver=None):
 
     # 솔로 랭크 클릭
     driver.find_elements_by_css_selector('div > button.match-history-filter__queue-type')[1].click()
-    time.sleep(3)
+    time.sleep(2)
 
     # html 파싱해오기
     html = driver.page_source
