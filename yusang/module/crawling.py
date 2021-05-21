@@ -46,7 +46,7 @@ def get_data(df):
             data = pd.concat([data, df_temp])
 
     driver.close()
-    print(f"소환사 정보 불러오기 완료! (성공:{num_success}, 실패:{num_fail}")
+    print(f"크롤링 완료! (성공:{num_success}, 실패:{num_fail})")
 
     return data
 
@@ -93,7 +93,7 @@ def get_user_log(name, driver=None):
     url = make_url(name)
     driver.get(url)
     print(f"소환사 <{name}> 정보 로딩 중...", end='')
-    time.sleep(4)
+    time.sleep(3)
     # 소환사명 없는 경우 예외처리
     try:
         driver.find_element_by_id('search-not-found')
@@ -126,7 +126,8 @@ def get_user_log(name, driver=None):
 
         temp_df['position'] = find_position(game, name)
         playtime_str = game.select('div > span.mt-md-1')[0].text
-        temp_df['play time'] = int(playtime_str[:2]) * 60 + int(playtime_str[3:])
+        playtime_str = playtime_str.split(':')
+        temp_df['play time'] = int(playtime_str[-2]) * 60 + int(playtime_str[-1])
 
         kda = game.select('div > div.kda > span')
         temp_df['kill'] = int(kda[0].text)
