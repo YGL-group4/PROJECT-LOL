@@ -45,7 +45,7 @@ from module import lol_api
 from module import crawling
 
 print("="*30)
-my_df = lol_api.get_summoner_df('김치유상균')
+my_df = lol_api.get_summoner_df('탈론의신탈론의왕')
 my_data = crawling.get_data(my_df)
 print("********load my data!")
 
