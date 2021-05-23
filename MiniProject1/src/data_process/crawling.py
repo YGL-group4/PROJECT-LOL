@@ -9,7 +9,14 @@
 # Reference: poro.gg
 """
 
-# import
+from MiniProject1.src.config import folder
+
+from selenium import webdriver
+import chromedriver_autoinstaller
+from bs4 import BeautifulSoup
+import pandas as pd
+import urllib
+import time
 
 
 # 크롤링할 전적 사이트 : poro.gg

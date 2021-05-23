@@ -34,7 +34,7 @@ def evaluate_model():
     pass
 
 if __name__ == '__main__':
-    make_data()
+    # make_data()
     get_data()
     train_model()
     test_model()
