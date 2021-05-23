@@ -5,11 +5,11 @@ x_test (333, 10)
 test score : 0.8798798798798799
 ==============================
 1명의 소환사 정보를 불러옵니다...
-(1/1) 소환사 <김치유상균> 정보 로딩 중... (success) --- 20판
+(1/1) 소환사 <탈론의신탈론의왕> 정보 로딩 중... (success) --- 20판
 크롤링 완료! (성공:1, 실패:0)
 ********load my data!
-내 전적으로 점수내기 -> 0.9230769230769231
-예측 [1 0 1 0 0 1 0 1 1 1 1 1 1]
-실제 [1 0 1 0 0 1 0 1 1 0 1 1 1]
-->  [ True  True  True  True  True  True  True  True  True False  True  True
-  True]
+내 전적으로 점수내기 -> 0.8823529411764706
+예측 [0 1 1 0 0 1 1 1 0 0 0 0 0 1 1 1 1]
+실제 [0 1 1 0 1 1 1 1 0 0 0 1 0 1 1 1 1]
+->  [ True  True  True  True False  True  True  True  True  True  True False
+  True  True  True  True  True]

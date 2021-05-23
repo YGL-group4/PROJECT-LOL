@@ -16,7 +16,7 @@ def get_api_key():
     """
     api key : 2021-05-17
     """
-    f = open("../data/lol_api_key.txt", 'r')
+    f = open("../../MiniProject1/data/lol_api_key.txt", 'r')
     # f = open("mini_project/lol_api_key.txt", 'r')
     api_key = f.readline()
     f.close()

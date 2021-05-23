@@ -19,7 +19,7 @@ def get_api_key():
     """
     라이엇 API 인증키를 저장된 lol_api_key.txt로부터 불러오는 함수
     """
-    path_key = folder.get_data_path('../data/lol_api_key.txt')
+    path_key = folder.get_data_path('../../MiniProject1/data/lol_api_key.txt')
 
     f = open(path_key, 'r')
     api_key = f.readline()
