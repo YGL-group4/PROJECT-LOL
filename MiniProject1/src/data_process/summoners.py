@@ -109,6 +109,17 @@ class LOLapi():
 
         return df
 
+# 특정 소환사 이름만 Dataframe에 담는 함수
+def get_summoner_df(name):
+    """
+    해당 소환사명을 담은 Dataframe을 반환
+    :param name: 소환사명
+    :return: 소환사명이 담긴 1개 길이의 Dataframe
+    """
+    df = pd.DataFrame([name], columns=['summonerName'])
+
+    return df
+
 
 
 class PoroGG():

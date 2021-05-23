@@ -10,7 +10,7 @@
 
 import os
 
-base = os.path.dirname(__file__).replace("/src/config", "").replace("\\src\\setting", "")
+base = os.path.dirname(__file__).replace("/src/config", "").replace("\\src\\config", "")
 src = os.path.join(base, 'src')
 data = os.path.join(base, 'data')
 data_process = os.path.join(src, 'data_process')
