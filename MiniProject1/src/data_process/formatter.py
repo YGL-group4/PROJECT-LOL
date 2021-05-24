@@ -27,9 +27,8 @@ def split_input_output(df):
     :param df: 전체 Dataframe
     :return: input(feature) Dataframe, output(target) Dataframe
     """
-    col_x = list(df.columns)
-    col_y = 'win'
-    col_x.remove(col_y)
+    col_x = ['kill', 'death', 'assist', 'kill participation(%)', 'cs', 'vision score', 'play time']
+    col_y = ['win']
 
     x = df[col_x]
     y = df[col_y]

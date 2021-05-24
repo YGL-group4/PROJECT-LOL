@@ -1,32 +1,47 @@
 ============= Position : top
+columns :  Index(['play time', 'kill', 'death', 'assist', 'kill participation(%)', 'cs',
+       'vision score', 'pink ward', 'ward', 'break ward', 'win'],
+      dtype='object')
 로지스틱 회귀 모델이 생성되었습니다.
 모델 학습 완료!
-train 모델 평가 점수는 0.830점 입니다.
-test 모델 평가 점수는 0.853점 입니다.
+train 모델 평가 점수는 0.833점 입니다.
+test 모델 평가 점수는 0.859점 입니다.
 evaluate 모델 평가 점수는 0.865점 입니다.
 
 ============= Position : jug
+columns :  Index(['play time', 'kill', 'death', 'assist', 'kill participation(%)', 'cs',
+       'vision score', 'pink ward', 'ward', 'break ward', 'win'],
+      dtype='object')
 로지스틱 회귀 모델이 생성되었습니다.
 모델 학습 완료!
-train 모델 평가 점수는 0.878점 입니다.
-test 모델 평가 점수는 0.852점 입니다.
-evaluate 모델 평가 점수는 0.868점 입니다.
+train 모델 평가 점수는 0.880점 입니다.
+test 모델 평가 점수는 0.857점 입니다.
+evaluate 모델 평가 점수는 0.877점 입니다.
 
 ============= Position : mid
+columns :  Index(['play time', 'kill', 'death', 'assist', 'kill participation(%)', 'cs',
+       'vision score', 'pink ward', 'ward', 'break ward', 'win'],
+      dtype='object')
 로지스틱 회귀 모델이 생성되었습니다.
 모델 학습 완료!
-train 모델 평가 점수는 0.862점 입니다.
-test 모델 평가 점수는 0.903점 입니다.
+train 모델 평가 점수는 0.866점 입니다.
+test 모델 평가 점수는 0.891점 입니다.
 evaluate 모델 평가 점수는 0.867점 입니다.
 
 ============= Position : adc
+columns :  Index(['play time', 'kill', 'death', 'assist', 'kill participation(%)', 'cs',
+       'vision score', 'pink ward', 'ward', 'break ward', 'win'],
+      dtype='object')
 로지스틱 회귀 모델이 생성되었습니다.
 모델 학습 완료!
 train 모델 평가 점수는 0.870점 입니다.
-test 모델 평가 점수는 0.874점 입니다.
+test 모델 평가 점수는 0.868점 입니다.
 evaluate 모델 평가 점수는 0.892점 입니다.
 
 ============= Position : sup
+columns :  Index(['play time', 'kill', 'death', 'assist', 'kill participation(%)', 'cs',
+       'vision score', 'pink ward', 'ward', 'break ward', 'win'],
+      dtype='object')
 로지스틱 회귀 모델이 생성되었습니다.
 모델 학습 완료!
 train 모델 평가 점수는 0.904점 입니다.

@@ -29,6 +29,7 @@ class MainFunction():
         self.data = None
         self.modeling = None
         self.score = None
+        self.coef = pd.DataFrame()
 
     # 1. make data
     def make_data(self):
@@ -58,6 +59,7 @@ class MainFunction():
         data = data.drop(['position'], axis=1)
 
         self.data = data
+        print('columns : ', data.columns)
 
     # 3. create and train, test model
     def train_test_model(self):
@@ -74,16 +76,17 @@ class MainFunction():
         LR.get_score(x_test, y_test)
 
         self.modeling = LR
+        # print("coef_ : ", LR.model.coef_)
+
+        self.columns = ['kill', 'death', 'assist', 'kill participation(%)', 'cs', 'vision score', 'play time']
+        coef_ = LR.model.coef_.tolist()[0]
+
+        temp = pd.DataFrame([coef_], columns=self.columns)
+        # self.coef = pd.concat([self.coef, temp])
+        self.coef = temp
 
     # 4. evaluate model
     def evaluate_model(self):
-        from MiniProject1.src.data_process import summoners
-        from MiniProject1.src.data_process import crawling
-
-        # name = '탈론의신탈론의왕'
-        # df_summoners = summoners.get_summoner_df(name)
-        # poro = crawling.PoroCrawling1(df_summoners)
-        # data = poro.data
         path = folder.get_data_path('grandmaster_0521.csv')
         data = pd.read_csv(path, index_col=0)
         data = data.iloc[:500]
@@ -113,6 +116,9 @@ if __name__ == '__main__':
         func.get_data()
         func.train_test_model()
         func.evaluate_model()
+
+        path = folder.get_data_path(f'coef_{position}.csv')
+        func.coef.to_csv(path)
         print()
 
     sys.stdout.close()
